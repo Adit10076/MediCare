@@ -1,101 +1,194 @@
-import Image from "next/image";
+'use client';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import Navbar from '@/components/Navbar';
+import ServiceCard from '@/components/ServiceCard';
+import DoctorCard from '@/components/DoctorCard';
+import Section from '@/components/Section';
 
-export default function Home() {
+const HomePage = () => {
+  const { scrollYProgress } = useScroll();
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.05]);
+  const y = useTransform(scrollYProgress, [0, 1], [0, -50]);
+
+  const medicalServices = [
+    { 
+      title: '24/7 Emergency Care',
+      icon: '🚑',
+      description: 'Immediate medical attention with our rapid response team',
+      color: 'bg-red-500/20'
+    },
+    {
+      title: 'Robotic Surgery',
+      icon: '🤖',
+      description: 'Precision operations with da Vinci Surgical System',
+      color: 'bg-blue-500/20'
+    },
+    {
+      title: 'Telemedicine',
+      icon: '📱',
+      description: 'Virtual consultations with top specialists',
+      color: 'bg-green-500/20'
+    }
+  ];
+
+  const doctors = [
+    {
+      name: 'Dr. Sarah Johnson',
+      specialty: 'Cardiothoracic Surgery',
+      image: '/images/doctors/dr-sarah.jpg',
+      experience: '15+ years'
+    },
+    {
+      name: 'Dr. Michael Chen',
+      specialty: 'Neuroimmunology',
+      image: '/images/doctors/dr-chen.jpg',
+      experience: '12+ years'
+    }
+  ];
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="min-h-screen bg-gradient-to-br from-blue-900 to-cyan-900 relative overflow-hidden">
+      {/* Animated Background */}
+      <motion.div style={{ scale, y }} className="absolute inset-0 z-0">
+        <div className="absolute top-1/4 left-1/4 w-60 h-60 bg-blue-500/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/3 right-1/4 w-72 h-72 bg-cyan-500/10 rounded-full blur-3xl" />
+        <div className="absolute inset-0 bg-[url('/medical-grid.svg')] opacity-5" />
+      </motion.div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
+      <Navbar />
+      
+      <main className="relative z-20">
+        {/* Hero Section */}
+        <section className="container mx-auto px-6 pt-32 pb-24">
+          <div className="flex flex-col md:flex-row items-center justify-between">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="md:w-1/2 mb-16 md:mb-0"
+            >
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="text-lg text-blue-400 font-medium mb-4"
+              >
+                Welcome to Medicare+
+              </motion.div>
+              <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
+                Transforming
+                <motion.span
+                  animate={{ rotate: [0, 2, -2, 0] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                  className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent block"
+                >
+                  Healthcare
+                </motion.span>
+              </h1>
+              <p className="text-xl text-white/80 mb-8 max-w-xl">
+                Experience next-generation medical care with AI-powered diagnostics, 
+                robotic surgery, and personalized treatment plans.
+              </p>
+              <div className="flex gap-4">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-medium"
+                >
+                  Book Appointment
+                </motion.button>
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  className="px-6 py-3 bg-transparent hover:bg-white/5 text-white rounded-xl border border-white/10"
+                >
+                  Learn More
+                </motion.button>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="md:w-1/2 flex justify-center"
+            >
+              <div className="grid grid-cols-2 gap-6 w-full max-w-xl">
+                {[
+                  { title: 'AI Diagnostics', icon: '🧠', desc: 'Instant analysis' },
+                  { title: 'E-Records', icon: '📁', desc: 'Secure storage' },
+                  { title: 'Live Monitoring', icon: '📈', desc: 'Real-time tracking' },
+                  { title: 'Smart Pharmacy', icon: '💊', desc: 'Auto-refills' }
+                ].map((feature, index) => (
+                  <motion.div
+                    key={index}
+                    whileHover={{ scale: 1.02 }}
+                    className="bg-white/5 backdrop-blur-lg p-6 rounded-2xl border border-white/10 hover:border-white/20 transition-all"
+                  >
+                    <div className="text-4xl mb-4">{feature.icon}</div>
+                    <h3 className="text-xl font-semibold text-white mb-2">
+                      {feature.title}
+                    </h3>
+                    <p className="text-white/70 text-sm">{feature.desc}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Services Section */}
+        <Section title="Our Advanced Services">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {medicalServices.map((service, index) => (
+              <ServiceCard
+                key={service.title}
+                {...service}
+                index={index}
+              />
+            ))}
+          </div>
+        </Section>
+
+        {/* Specialists Section */}
+        <Section title="Meet Our Specialists">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {doctors.map((doctor, index) => (
+              <DoctorCard
+                key={doctor.name}
+                {...doctor}
+                index={index}
+              />
+            ))}
+          </div>
+        </Section>
+
+        {/* CTA Section */}
+        <section className="bg-gradient-to-r from-blue-600/30 to-cyan-600/30 py-32">
+          <div className="container mx-auto px-6 text-center">
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              className="max-w-3xl mx-auto"
+            >
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">
+                Start Your Health Journey Today
+              </h2>
+              <div className="flex justify-center space-x-4">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-medium"
+                >
+                  Get Started
+                </motion.button>
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  className="px-8 py-4 bg-transparent hover:bg-white/5 text-white rounded-xl border border-white/10"
+                >
+                  Contact Us
+                </motion.button>
+              </div>
+            </motion.div>
+          </div>
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
     </div>
   );
-}
+};
+
+export default HomePage;
