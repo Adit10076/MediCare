@@ -4,6 +4,7 @@ import Navbar from '@/components/Navbar';
 import ServiceCard from '@/components/ServiceCard';
 import DoctorCard from '@/components/DoctorCard';
 import Section from '@/components/Section';
+import { Card } from './components/Card';
 
 const HomePage = () => {
   const { scrollYProgress } = useScroll();
@@ -13,21 +14,19 @@ const HomePage = () => {
   const medicalServices = [
     { 
       title: '24/7 Emergency Care',
-      icon: '🚑',
       description: 'Immediate medical attention with our rapid response team',
-      color: 'bg-red-500/20'
+
     },
     {
       title: 'Robotic Surgery',
-      icon: '🤖',
+    
       description: 'Precision operations with da Vinci Surgical System',
-      color: 'bg-blue-500/20'
+      
     },
     {
       title: 'Telemedicine',
-      icon: '📱',
+    
       description: 'Virtual consultations with top specialists',
-      color: 'bg-green-500/20'
     }
   ];
 
@@ -135,11 +134,11 @@ const HomePage = () => {
         {/* Services Section */}
         <Section title="Our Advanced Services">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {medicalServices.map((service, index) => (
-              <ServiceCard
+            {medicalServices.map((service) => (
+              <Card
                 key={service.title}
                 {...service}
-                index={index}
+                
               />
             ))}
           </div>
