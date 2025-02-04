@@ -66,7 +66,7 @@ const HomePage = () => {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-900 to-cyan-900 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-blue-500 to-cyan-700 relative overflow-hidden">
       {/* Animated Background */}
       <motion.div style={{ scale, y }} className="absolute inset-0 z-0">
         <div className="absolute top-1/4 left-1/4 w-60 h-60 bg-blue-500/10 rounded-full blur-3xl" />
@@ -90,14 +90,14 @@ const HomePage = () => {
                 animate={{ opacity: 1 }}
                 className="text-lg text-blue-400 font-medium mb-4"
               >
-                Welcome to Medicare+
+                <div className="flex items-center gap-3 text-white text-xl">Welcome to <b className="text-2xl font-semibold bg-gradient-to-r from-blue-900 to-cyan-900 bg-clip-text text-transparent block">Medicare+</b></div>
               </motion.div>
               <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
                 Transforming
                 <motion.span
                   animate={{ rotate: [0, 2, -2, 0] }}
                   transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
-                  className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent block"
+                  className="bg-gradient-to-r from-blue-900 to-cyan-600 bg-clip-text text-transparent block"
                 >
                   Healthcare
                 </motion.span>
@@ -150,7 +150,7 @@ const HomePage = () => {
         </section>
 
         {/* Services Section */}
-        <Section title="Our Advanced Services">
+        <Section title="Our Advanced Service">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {medicalServices.map((service, index) => (
               <ServiceCard key={service.title} {...service} index={index} />
