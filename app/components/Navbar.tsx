@@ -9,28 +9,18 @@ import { FiMenu, FiX, FiChevronDown } from "react-icons/fi";
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [selectedType, setSelectedType] = useState<"user" | "hospital" | null>(
-    null
-  );
+  const [selectedType, setSelectedType] = useState<"user" | "hospital" | null>(null);
 
-  const floatingVariants = {
-    float: {
-      y: [0, -20, 0],
-      transition: {
-        duration: 4,
-        repeat: Number.POSITIVE_INFINITY,
-        ease: "easeInOut",
-      },
-    },
-  };
+  
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 bg-white/5 backdrop-blur-xl border-b border-white/10">
+    <nav className="fixed top-0 left-0 w-full z-50 bg-black/30 backdrop-blur-xl border-b border-white/10">
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex justify-center items-center gap-10">
+          {/* Logo and Title */}
           <Link href="/" className="flex items-center space-x-3">
             <motion.div
-              variants={floatingVariants}
+              
               animate="float"
               className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center"
             >
@@ -39,6 +29,7 @@ const Navbar: React.FC = () => {
             <span className="text-2xl font-bold text-white">Medicare</span>
           </Link>
 
+          {/* Desktop Navigation */}
           <div className="hidden md:flex space-x-8 items-center">
             {["Services", "Doctors", "Departments", "Contact"].map(
               (item, index) => (
@@ -67,9 +58,7 @@ const Navbar: React.FC = () => {
               >
                 Get Started
                 <FiChevronDown
-                  className={`transition-transform ${
-                    isDropdownOpen ? "rotate-180" : ""
-                  }`}
+                  className={`transition-transform ${isDropdownOpen ? "rotate-180" : ""}`}
                 />
               </button>
 
@@ -84,7 +73,7 @@ const Navbar: React.FC = () => {
                       <div key={type} className="relative">
                         <Link
                           href={`/signup?type=${type}`}
-                          className="block w-full text-center py-2 bg-transparent hover:bg-white/5 text-white rounded-lg transition-all"
+                          className="block w-full text-center py-3 bg-transparent hover:bg-white/5 text-white rounded-xl transition-all border border-white/10"
                           onClick={() => {
                             setIsDropdownOpen(false);
                             setSelectedType(null);
@@ -93,12 +82,10 @@ const Navbar: React.FC = () => {
                           <button
                             onClick={() =>
                               setSelectedType(
-                                selectedType === type
-                                  ? null
-                                  : (type as "user" | "hospital")
+                                selectedType === type ? null : (type as "user" | "hospital")
                               )
                             }
-                            className="w-full px-4 py-2 text-white/80 hover:bg-white/5 rounded-lg transition-colors flex justify-between items-center"
+                            className="w-full px-4 py-2 text-white hover:bg-white/5 rounded-xl transition-colors flex justify-between items-center"
                           >
                             {type.charAt(0).toUpperCase() + type.slice(1)}
                             <FiChevronDown className="text-sm transform -rotate-90" />
@@ -112,6 +99,7 @@ const Navbar: React.FC = () => {
             </div>
           </div>
 
+          {/* Mobile Menu Toggle */}
           <button
             className="md:hidden text-white/80 hover:text-white"
             onClick={() => setIsOpen(!isOpen)}
