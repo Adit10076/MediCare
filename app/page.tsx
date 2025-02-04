@@ -1,50 +1,69 @@
-'use client';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import Navbar from '@/components/Navbar';
-import ServiceCard from '@/components/ServiceCard';
-import DoctorCard from '@/components/DoctorCard';
-import Section from '@/components/Section';
+"use client"
+import { motion, useScroll, useTransform } from "framer-motion"
+import Navbar from "@/components/Navbar"
+import ServiceCard from "@/components/ServiceCard"
+import DoctorCard from "@/components/DoctorCard"
+import Section from "@/components/Section"
+
 
 const HomePage = () => {
-  const { scrollYProgress } = useScroll();
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.05]);
-  const y = useTransform(scrollYProgress, [0, 1], [0, -50]);
+  const { scrollYProgress } = useScroll()
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.05])
+  const y = useTransform(scrollYProgress, [0, 1], [0, -50])
 
   const medicalServices = [
-    { 
-      title: '24/7 Emergency Care',
-      icon: '🚑',
-      description: 'Immediate medical attention with our rapid response team',
-      color: 'bg-red-500/20'
+    {
+      title: "Instant Ambulance",
+      icon: "🚑",
+      description: "Quick response emergency ambulance service available 24/7 with real-time tracking and immediate dispatch.",
+      color: "bg-red-500/20",
     },
     {
-      title: 'Robotic Surgery',
-      icon: '🤖',
-      description: 'Precision operations with da Vinci Surgical System',
-      color: 'bg-blue-500/20'
+      title: "Available Hospitals",
+      icon: "🏥",
+      description: "Find nearby hospitals with real-time availability status and emergency department waiting times.",
+      color: "bg-blue-500/20",
     },
     {
-      title: 'Telemedicine',
-      icon: '📱',
-      description: 'Virtual consultations with top specialists',
-      color: 'bg-green-500/20'
-    }
+      title: "Blood Bank",
+      icon: "🩸",
+      description: "Access to blood bank inventory with real-time updates on blood type availability and donation requests.",
+      color: "bg-purple-500/20",
+    },
+    {
+      title: "Emergency Beds",
+      icon: "🛏️",
+      description: "Live tracking of available emergency beds across hospitals with instant booking capability.",
+      color: "bg-green-500/20",
+    },
+    {
+      title: "Oxygen Cylinders",
+      icon: "💨",
+      description: "Track and request oxygen cylinders with real-time inventory management and emergency delivery.",
+      color: "bg-cyan-500/20",
+    },
+    {
+      title: "AI Powered Assistance",
+      icon: "🤖",
+      description: "24/7 AI-powered medical assistance for emergency guidance and quick response coordination.",
+      color: "bg-yellow-500/20",
+    },
   ];
 
   const doctors = [
     {
-      name: 'Dr. Sarah Johnson',
-      specialty: 'Cardiothoracic Surgery',
-      image: '/images/doctors/dr-sarah.jpg',
-      experience: '15+ years'
+      name: "Dr. Sarah Johnson",
+      specialty: "Cardiothoracic Surgery",
+      image: "/images/doctors/dr-sarah.jpg",
+      experience: "15+ years",
     },
     {
-      name: 'Dr. Michael Chen',
-      specialty: 'Neuroimmunology',
-      image: '/images/doctors/dr-chen.jpg',
-      experience: '12+ years'
-    }
-  ];
+      name: "Dr. Michael Chen",
+      specialty: "Neuroimmunology",
+      image: "/images/doctors/dr-chen.jpg",
+      experience: "12+ years",
+    },
+  ]
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-900 to-cyan-900 relative overflow-hidden">
@@ -56,7 +75,7 @@ const HomePage = () => {
       </motion.div>
 
       <Navbar />
-      
+
       <main className="relative z-20">
         {/* Hero Section */}
         <section className="container mx-auto px-6 pt-32 pb-24">
@@ -77,15 +96,15 @@ const HomePage = () => {
                 Transforming
                 <motion.span
                   animate={{ rotate: [0, 2, -2, 0] }}
-                  transition={{ duration: 2, repeat: Infinity }}
+                  transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
                   className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent block"
                 >
                   Healthcare
                 </motion.span>
               </h1>
               <p className="text-xl text-white/80 mb-8 max-w-xl">
-                Experience next-generation medical care with AI-powered diagnostics, 
-                robotic surgery, and personalized treatment plans.
+                Experience next-generation medical care with AI-powered diagnostics, robotic surgery, and personalized
+                treatment plans.
               </p>
               <div className="flex gap-4">
                 <motion.button
@@ -110,10 +129,10 @@ const HomePage = () => {
             >
               <div className="grid grid-cols-2 gap-6 w-full max-w-xl">
                 {[
-                  { title: 'AI Diagnostics', icon: '🧠', desc: 'Instant analysis' },
-                  { title: 'E-Records', icon: '📁', desc: 'Secure storage' },
-                  { title: 'Live Monitoring', icon: '📈', desc: 'Real-time tracking' },
-                  { title: 'Smart Pharmacy', icon: '💊', desc: 'Auto-refills' }
+                  { title: "AI Diagnostics", icon: "🧠", desc: "Instant analysis" },
+                  { title: "E-Records", icon: "📁", desc: "Secure storage" },
+                  { title: "Live Monitoring", icon: "📈", desc: "Real-time tracking" },
+                  { title: "Smart Pharmacy", icon: "💊", desc: "Auto-refills" },
                 ].map((feature, index) => (
                   <motion.div
                     key={index}
@@ -121,9 +140,7 @@ const HomePage = () => {
                     className="bg-white/5 backdrop-blur-lg p-6 rounded-2xl border border-white/10 hover:border-white/20 transition-all"
                   >
                     <div className="text-4xl mb-4">{feature.icon}</div>
-                    <h3 className="text-xl font-semibold text-white mb-2">
-                      {feature.title}
-                    </h3>
+                    <h3 className="text-xl font-semibold text-white mb-2">{feature.title}</h3>
                     <p className="text-white/70 text-sm">{feature.desc}</p>
                   </motion.div>
                 ))}
@@ -136,24 +153,18 @@ const HomePage = () => {
         <Section title="Our Advanced Services">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {medicalServices.map((service, index) => (
-              <ServiceCard
-                key={service.title}
-                {...service}
-                index={index}
-              />
+              <ServiceCard key={service.title} {...service} index={index} />
             ))}
           </div>
         </Section>
+
+        
 
         {/* Specialists Section */}
         <Section title="Meet Our Specialists">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {doctors.map((doctor, index) => (
-              <DoctorCard
-                key={doctor.name}
-                {...doctor}
-                index={index}
-              />
+              <DoctorCard key={doctor.name} {...doctor} index={index} />
             ))}
           </div>
         </Section>
@@ -161,14 +172,8 @@ const HomePage = () => {
         {/* CTA Section */}
         <section className="bg-gradient-to-r from-blue-600/30 to-cyan-600/30 py-32">
           <div className="container mx-auto px-6 text-center">
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              className="max-w-3xl mx-auto"
-            >
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">
-                Start Your Health Journey Today
-              </h2>
+            <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="max-w-3xl mx-auto">
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">Start Your Health Journey Today</h2>
               <div className="flex justify-center space-x-4">
                 <motion.button
                   whileHover={{ scale: 1.05 }}
@@ -188,7 +193,8 @@ const HomePage = () => {
         </section>
       </main>
     </div>
-  );
-};
+  )
+}
 
-export default HomePage;
+export default HomePage
+
