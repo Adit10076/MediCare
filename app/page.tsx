@@ -4,6 +4,8 @@ import Navbar from "@/components/Navbar"
 import ServiceCard from "@/components/ServiceCard"
 import DoctorCard from "@/components/DoctorCard"
 import Section from "@/components/Section"
+import { FaArrowCircleRight } from "react-icons/fa";
+
 
 
 const HomePage = () => {
@@ -78,8 +80,8 @@ const HomePage = () => {
 
       <main className="relative z-20">
         {/* Hero Section */}
-        <section className="container mx-auto px-6 pt-32 pb-24">
-          <div className="flex flex-col md:flex-row items-center justify-between">
+        <section className="container px-6 pt-32 pb-24">
+          <div className="flex flex-col md:flex-row items-center justify-around gap-10 px-10">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
@@ -111,7 +113,7 @@ const HomePage = () => {
                   whileHover={{ scale: 1.05 }}
                   className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-medium"
                 >
-                  Book Appointment
+                  <span className="flex gap-3 justify-center items-center">Sign up Now <FaArrowCircleRight/></span>
                 </motion.button>
                 <motion.button
                   whileHover={{ scale: 1.05 }}
